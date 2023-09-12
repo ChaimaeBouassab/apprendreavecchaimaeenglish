@@ -36,3 +36,53 @@
     transform: rotate(360deg);
   }
 }
+/* Header.css */
+
+/* Style for the main menu items */
+/* Header.css */
+
+/* Style for the main menu items */
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li {
+  display: inline-block;
+  margin-right: 20px; /* Adjust the spacing between menu items */
+}
+
+.menu a {
+  text-decoration: none;
+  color: #333; /* Adjust the text color */
+  font-weight: bold;
+}
+
+/* Style for the sub-menu */
+.sub-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  background-color: #fff; /* Background color of the sub-menu */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Add a shadow for depth */
+  display: none; /* Initially hide the sub-menu */
+  z-index: 1; /* Ensure the sub-menu appears above other content */
+  margin-top: 10px; /* Add margin to separate it from the parent menu item */
+}
+
+.sub-menu li {
+  padding: 10px; /* Adjust the padding for sub-menu items */
+}
+
+.sub-menu a {
+  color: #333; /* Adjust the text color for sub-menu items */
+  text-decoration: none;
+  display: block;
+}
+
+/* Show the sub-menu when the parent li is hovered */
+.menu li:hover .sub-menu {
+  display: block;
+}

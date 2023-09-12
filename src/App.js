@@ -4,6 +4,7 @@ import GrammarSection from './GrammarSection'; // Import the GrammarSection comp
 
 const Header = () => {
   const [logoWidth, setLogoWidth] = useState(0);
+  const [showLevelsMenu, setShowLevelsMenu] = useState(false); // Add state for levels menu
 
   useEffect(() => {
     const handleResize = () => {
@@ -24,15 +25,18 @@ const Header = () => {
   }, []);
 
   // Inside your Header component
-const handleGrammarLinkClick = () => {
-  const grammarSection = document.getElementById('grammar');
-  if (grammarSection) {
-    grammarSection.scrollIntoView({ behavior: 'smooth' });
-  }
-};
+  const handleGrammarLinkClick = () => {
+    const grammarSection = document.getElementById('grammar');
+    if (grammarSection) {
+      grammarSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
-// In your JSX, add an onClick handler to the "Grammar" link
-<li><a href="#grammar" onClick={handleGrammarLinkClick}>Grammar</a></li>
+  // Function to toggle the display of levels menu
+  const toggleLevelsMenu = (e) => {
+    e.preventDefault(); // Prevent the default navigation behavior
+    setShowLevelsMenu(!showLevelsMenu);
+  };
 
   return (
     <div className="header">
@@ -40,11 +44,24 @@ const handleGrammarLinkClick = () => {
       <div className="menu-container">
         <nav>
           <ul className="menu">
-           <li><a href="/levels">Levels</a></li>
+            <li>
+              <a href="/levels" onClick={toggleLevelsMenu}>
+                Levels
+              </a>
+              {showLevelsMenu && (
+                <ul className="sub-menu">
+                  <li><a href="/level/A1-A2">A1-A2</a></li>
+                  <br></br>
+                  <li><a href="/level/B1-B2">B1-B2</a></li>
+                  <br></br>
+                  <li><a href="/level/C1-C1">C1-C1</a></li>
+                </ul>
+              )}
+            </li>
             <li><a href="/courses">Courses</a></li>
+            <li><a href="/articles">Articles</a></li>
             <li><a href="#grammar" onClick={handleGrammarLinkClick}>Grammar</a></li>
             <li><a href="/quizzes">Quizzes</a></li>
-            <li><a href="/articles">Articles</a></li>
             <li><a href="/books">Books</a></li>
           </ul>
         </nav>
@@ -60,7 +77,7 @@ const handleGrammarLinkClick = () => {
       </div>
 
       {/* Include the GrammarSection component */}
-      <div id="grammar"  className="grammar-container">
+      <div id="grammar" className="grammar-container">
         <GrammarSection />
       </div>
     </div>
